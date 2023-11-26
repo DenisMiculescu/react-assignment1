@@ -3,12 +3,11 @@ import { useParams } from 'react-router-dom';
 import MovieDetails from "../components/movieDetails/";
 import PageTemplate from "../components/templateMoviePage";
 import MovieList from "../components/movieList";
-//import useMovie from "../hooks/useMovie";
 import { getMovie, getRec } from '../api/tmdb-api'
 import { useQuery } from "react-query";
 import Spinner from '../components/spinner'
-import Cast from "../components/cast"
-
+import Cast from "../components/cast";
+import { Grid } from "@mui/material";
 
 const MoviePage = (props) => {
   const { id } = useParams();
@@ -17,10 +16,10 @@ const MoviePage = (props) => {
     getMovie
   );
 
-  const {data: recommendations, error: recError, isLoading: recIsLoading, isError: recIsError} = useQuery(
-    ["getRec", {id: id}],
+  const { data: recommendations, error: recError, isLoading: recIsLoading, isError: recIsError } = useQuery(
+    ["getRec", { id: id }],
     getRec
-  )
+  );
 
   if (isLoading || recIsLoading) {
     return <Spinner />;
@@ -30,23 +29,24 @@ const MoviePage = (props) => {
     return <h1>{error.message || recError.message}</h1>;
   }
 
-  console.log(recommendations)
-  const recMovies = recommendations.results.splice(0, 5)
-  const castMembers = movie.credits.cast.splice(0, 12)
+  const recMovies = recommendations.results.splice(0, 5);
+  const castMembers = movie.credits.cast.splice(0, 12);
 
   return (
     <>
       {movie ? (
-        <>
-          <PageTemplate movie={movie}>
-            <MovieDetails movie={movie} />
-            <Cast cast={castMembers} />
-          </PageTemplate>
-          <MovieList movies={recMovies} action={(movie) => {
-            return null
-          }}
-          />
-        </>
+        <PageTemplate movie={movie}>
+          <MovieDetails movie={movie} />
+          <Cast cast={castMembers} />
+          <h2>Recommended Movies</h2>
+          <Grid container spacing={2}>
+            {recMovies.map((recMovie) => (
+              <Grid item key={recMovie.id} xs={12} sm={6} md={4} lg={4}>
+                <MovieList movies={[recMovie]} action={(movie) => null} />
+              </Grid>
+            ))}
+          </Grid>
+        </PageTemplate>
       ) : (
         <p>Waiting for movie details</p>
       )}

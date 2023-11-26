@@ -29,7 +29,6 @@ const UpcomingMoviesPage = (props) => {
     <PageTemplate
       title='Upcoming Movies'
       movies={movies}
-      // selectWatchlist={addToWatchlist}
       action={(movie) => {
         return <AddToWatchlistIcon movie={movie} />
       }}

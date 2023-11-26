@@ -6,6 +6,8 @@ import PageTemplate from "../components/templateMoviePage";
 import { getMovie } from '../api/tmdb-api'
 import { useQuery } from "react-query";
 import Spinner from '../components/spinner'
+import Cast from "../components/cast"
+
 
 
 const MoviePage = (props) => {
@@ -23,12 +25,16 @@ const MoviePage = (props) => {
     return <h1>{error.message}</h1>;
   }
 
+  console.log(movie)
+  console.log(movie.credits.cast)
+
   return (
     <>
       {movie ? (
         <>
           <PageTemplate movie={movie}>
             <MovieDetails movie={movie} />
+            <Cast cast={movie.credits.cast} />
           </PageTemplate>
         </>
       ) : (

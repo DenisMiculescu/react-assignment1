@@ -1,14 +1,15 @@
 import React from "react";
-import { getMovies } from "../api/tmdb-api";
+import { getMoviesInCinema } from "../api/tmdb-api";
 import PageTemplate from '../components/templateMovieListPage';
 import { useQuery } from 'react-query';
 import Spinner from '../components/spinner';
 import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
 import Tooltip from '@mui/material/Tooltip';
+import { get } from "react-hook-form";
 
-const HomePage = (props) => {
+const getMoviesInCinemaPage = (props) => {
 
-  const {  data, error, isLoading, isError }  = useQuery('discover', getMovies)
+  const {  data, error, isLoading, isError }  = useQuery('incinema', getMoviesInCinema)
 
   if (isLoading) {
     return <Spinner />
@@ -18,7 +19,8 @@ const HomePage = (props) => {
     return <h1>{error.message}</h1>
   }  
   const movies = data.results;
-  console.log(movies)
+
+console.log(movies)
 
   // Redundant, but necessary to avoid app crashing.
   const favorites = movies.filter(m => m.favorite)
@@ -27,7 +29,7 @@ const HomePage = (props) => {
 
   return (
     <PageTemplate
-      title="Discover Movies"
+      title="Movies in Cinema"
       movies={movies}
       action={(movie) => {
         return <AddToFavoritesIcon movie={movie} />
@@ -35,4 +37,4 @@ const HomePage = (props) => {
     />
   );
 };
-export default HomePage;
+export default getMoviesInCinemaPage;

@@ -12,7 +12,7 @@ const Cast = ({ cast }) => {
       <div style={{ display: "flex", flexWrap: "wrap" }}>
         {cast.map((castMember) => (
           <Link
-            to={`/actor/${castMember.name}`}
+            to={`/actor/${castMember.id}`}
             key={castMember.id}
             style={{ textDecoration: "none" }}
           >

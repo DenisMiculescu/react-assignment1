@@ -13,6 +13,8 @@ import MoviesContextProvider from "./contexts/moviesContext";
 import AddMovieReviewPage from './pages/addMovieReviewPage'
 import WatchlistMoviesPage from "./pages/watchlistMoviesPage";
 import TopRatedMoviesPage from "./pages/topRatedMoviesPage";
+import MoviesInCinemaPage from "./pages/moviesInCinemaPage";
+import PopularActors from "./pages/popularActorsPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -35,9 +37,12 @@ const App = () => {
           <Route path="/movies/upcoming" element={<UpcomingMoviesPage />} />
           <Route path="/movies/watchlist" element={<WatchlistMoviesPage />} />
           <Route path="/movies/toprated" element={<TopRatedMoviesPage />} />
+          <Route path="/movies/moviesincinema" element={<MoviesInCinemaPage />} />
+          <Route path="/movies/popularactors" element={<PopularActors />} />
           <Route path="/reviews/form" element={ <AddMovieReviewPage /> } />
           <Route path="/reviews/:id" element={ <MovieReviewPage /> } />
           <Route path="/movies/:id" element={<MoviePage />} />
+          {/* Route path="actor/:id" element={<actorProfilePage />} */}
           <Route path="/" element={<HomePage />} />
           <Route path="*" element={ <Navigate to="/" /> } />
         </Routes>

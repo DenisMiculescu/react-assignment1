@@ -30,7 +30,7 @@ const MoviePage = (props) => {
   }
 
   const recMovies = recommendations.results.splice(0, 5);
-  const castMembers = movie.credits.cast.splice(0, 12);
+  const castMembers = movie.credits.cast.splice(0, 14);
 
   return (
     <>

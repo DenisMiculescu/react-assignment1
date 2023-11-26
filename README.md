@@ -18,8 +18,6 @@ There are no addiontal, non-standard steps required to run the app locally. In a
 
 ## API endpoints.
 
-[ List the __additional__ TMDB endpoints used, giving the description and pathname for each one.] 
-
 Static endpoints:
 
 + Top Rated Movies - Displays the highest rated movies on the database. - movies/toprated
@@ -28,8 +26,8 @@ Static endpoints:
 
 Parameterised endpoints:
 
-+ Cast - Shows what actors were part of the movie - /movie/:id/credits/cast
-+ Recommended Movies - Displays various movie recommendations based on selected movie - /movie/:id/credits/recommendations (This doesn't display properly)
++ Cast - Shows what actors were part of the movie - /movie/:id/&append_to_response=credits
++ Recommended Movies - Displays various movie recommendations based on selected movie - /movie/:id/recommendations (This doesn't display properly)
 
 ## Routing.
 
